@@ -22,3 +22,8 @@ html, body, h1, h2, h3, h4, h5, h6 {
 	width:20%;
 	height:100px;
 }
+/* Links */
+a:link{color:#557A95;text-decoration:none;}
+a:visited{color:#5D5C61;}
+a:hover{color:#557A95;text-decoration:underline;}
+a:active{color:#557A95;}
