@@ -1,0 +1,19 @@
+html, body, h1, h2, h3, h4, h5, h6 {
+	font-family:'Quattrocento Sans', sans-serif;
+}
+/* Color Palette */
+.brown,.hover-brown:hover{color:#fff!important;background-color:#5D5C61!important}
+.gray,.hover-gray:hover{color:#fff!important;background-color:#817B82!important}
+.light-blue,.hover-light-blue:hover{color:#fff!important;background-color:#7395AE!important}
+.blue,.hover-blue:hover{color:#fff!important;background-color:#557A95!important}
+.tan,.hover-tan:hover{color:#fff!important;background-color:#B1A296!important}
+.text-brown,.hover-text-brown:hover{color:#5D5C61!important}
+.text-gray,.hover-text-gray:hover{color:#817B82!important}
+.text-light-blue,.hover-text-light-blue:hover{color:#7395AE!important}
+.text-blue,.hover-text-blue:hover{color:#557A95!important}
+.text-tan,.hover-text-tan:hover{color:#B1A296!important}
+
+.palette {
+	width:20%;
+	height:100px;
+}
