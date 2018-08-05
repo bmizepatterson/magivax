@@ -12,7 +12,12 @@ html, body, h1, h2, h3, h4, h5, h6 {
 .text-light-blue,.hover-text-light-blue:hover{color:#7395AE!important}
 .text-blue,.hover-text-blue:hover{color:#557A95!important}
 .text-tan,.hover-text-tan:hover{color:#B1A296!important}
-
+#color-palette {
+	position:fixed;
+	bottom:0;
+	left:0;
+	width:100%;
+}
 .palette {
 	width:20%;
 	height:100px;
