@@ -13,7 +13,7 @@
 			<h1 class="w3-jumbo text-blue">Magivax</h1>
 			<p>Magivax is a vaccine schedule generator for physicians.</p>
 			<p>Recommendations are based on CDC guidelines.</p><p><a href="#">Learn more</a> or
-			<button id="getStarted" class="w3-button light-blue hover-tan" style="display:inline;margin-left:8px;">Get Started</button></p>
+			<a id="getStarted" href="/enterpatientinfo.php" class="w3-button light-blue hover-tan" style="display:inline;margin-left:8px;">Get Started</a></p>
 		</div>
 
 	<div id="color-palette">
