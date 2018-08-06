@@ -5,7 +5,7 @@
 
 // TO DO: Prevent command line access
 
-function open_body($title, array $classes) {
+function open_body($title, $classes = array(), $echo = true) {
 	$class_str = '';
 	if ($classes) {
 		$class_str .= ' class="';
@@ -14,12 +14,17 @@ function open_body($title, array $classes) {
 		}
 		$class_str .= '"';
 	}
-	return '<!DOCTYPE html>
+	$html = '<!DOCTYPE html>
 <html>
 <head>'. standard_head() . "
 <title>$title</title>
 </head>
 <body{$class_str}>";
+	if ($echo) {
+		echo $html;
+	} else {
+		return $html;
+	}
 }
 
 function standard_head() {
@@ -32,6 +37,13 @@ function standard_head() {
 EOF;
 }
 
-function close_body() {
-	return "</body>\n</html>";
+function close_body($echo = true) {
+	$html = '';
+	$html .= '<script src="magivax.js"></script>';
+	$html .= "\n</body>\n</html>";
+	if ($echo) {
+		echo $html;
+	} else {
+		return $html;
+	}
 }
