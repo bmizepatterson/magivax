@@ -37,8 +37,8 @@ function standard_head() {
 EOF;
 }
 
-function close_body($echo = true) {
-	$html = '';
+function close_body($color_palette = true, $echo = true) {
+	$html = $color_palette ? color_palette() : '';
 	$html .= '<script src="magivax.js"></script>';
 	$html .= "\n</body>\n</html>";
 	if ($echo) {
@@ -46,4 +46,18 @@ function close_body($echo = true) {
 	} else {
 		return $html;
 	}
+}
+
+function color_palette() {
+	return <<<EOF
+	<div id="color-palette">
+		<div class="w3-row">
+			<div class="w3-display-container w3-col brown palette"><div class="w3-display-middle">#5D5C61</div></div>
+			<div class="w3-display-container w3-col gray palette"><div class="w3-display-middle">#817B82</div></div>
+			<div class="w3-display-container w3-col light-blue palette"><div class="w3-display-middle">#7395AE</div></div>
+			<div class="w3-display-container w3-col blue palette"><div class="w3-display-middle">#557A95</div></div>
+			<div class="w3-display-container w3-col tan palette"><div class="w3-display-middle">#B1A296</div></div>
+		</div>
+	</div>
+EOF;
 }
