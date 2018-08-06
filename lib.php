@@ -5,7 +5,7 @@
 
 // TO DO: Prevent command line access
 
-function open_body(array $classes) {
+function open_body($title, array $classes) {
 	$class_str = '';
 	if ($classes) {
 		$class_str .= ' class="';
@@ -17,6 +17,7 @@ function open_body(array $classes) {
 	return '<!DOCTYPE html>
 <html>
 <head>'. standard_head() . "
+<title>$title</title>
 </head>
 <body{$class_str}>";
 }

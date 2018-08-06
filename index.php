@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__) . '/lib.php');
-echo open_body(array('brown'));
+echo open_body('Magivax', array('brown'));
 ?>
 <div class="w3-center w3-white w3-display-middle w3-animate-opacity" style="padding:48px">
 	<h1 class="w3-jumbo text-blue">Magivax</h1>
