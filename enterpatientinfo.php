@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" type="text/css" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" type="text/css" href="magivax.css">
-	<title>Enter Patient Info | Magivax</title>
-</head>
-<body>
-	
-</body>
-</html>
+<?php
+require_once(dirname(__FILE__) . '/lib.php');
+open_body('Enter Patient Info | Magivax');
+?>
+
+<h1>Enter Patient Information</h1>
+
+<?php close_body(); ?>
