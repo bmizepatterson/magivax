@@ -1,9 +1,10 @@
 <?php
 require_once(dirname(__FILE__) . '/lib.php');
-open_body('Enter Patient Info | Magivax', array('brown'));
+open_body('Enter Patient Info | Magivax');
+user_nav();
 ?>
 <div class="w3-content w3-white">
-	<div class="w3-container w3-padding-64">
+	<div class="w3-container">
 		<h1>Enter Patient Information</h1>
 
 		<div class="w3-card w3-section">
