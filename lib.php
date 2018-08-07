@@ -27,6 +27,21 @@ function open_body($title, $classes = array(), $echo = true) {
 	}
 }
 
+function user_nav($echo = true) {
+	$html = <<<EOF
+	<div class="user-nav">
+		<a class="user-nav_home user-nav_item" href="index.php">Magivax</a>
+		<a class="user-nav_item" href="enterpatientinfo.php">Start</a>
+		<a class="user-nav_item" href="#">Admin</a>
+	</div>
+EOF;
+	if ($echo) {
+		echo $html;
+	} else {
+		return $html;
+	}
+}
+
 function standard_head() {
 	return <<<EOF
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

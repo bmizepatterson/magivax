@@ -27,3 +27,33 @@ a:link{color:#557A95;text-decoration:none;}
 a:visited{color:#5D5C61;}
 a:hover{color:#557A95;text-decoration:underline;}
 a:active{color:#557A95;}
+
+
+/* Layout */
+.user-nav {
+	width:100%;
+	overflow:hidden;
+	background-color:white;
+	font-weight:bold;
+	font-size:0.9rem;
+	border-bottom:1px solid #ccc;
+}
+.user-nav_item, .user-nav_item:link, .user-nav_item:visited, .user-nav_item:active {
+	padding:4px 16px;
+	float:right;
+	width:auto;
+	display:block;
+	color:#888;
+}
+.user-nav_item:hover {
+	text-decoration:none;
+}
+.user-nav_home, .user-nav_home:link, .user-nav_home:visited, .user-nav_home:active {
+	float:left;
+	color:#557A95;
+}
+.user-nav_home:hover {	
+	text-decoration: none;
+	background-color:#557A95;
+	color:white;
+}
