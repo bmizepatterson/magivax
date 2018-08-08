@@ -33,6 +33,7 @@ function user_nav($echo = true) {
 		<a class="user-nav_home user-nav_item" href="index.php">Magivax</a>
 		<a class="user-nav_item" href="enterpatientinfo.php">Start</a>
 		<a class="user-nav_item" href="admin.php">Admin</a>
+		<a class="user-nav_item" href="/phpmyadmin/" target="_blank">phpMyAdmin</a>
 	</div>
 EOF;
 	if ($echo) {
@@ -75,4 +76,15 @@ function color_palette() {
 		</div>
 	</div>
 EOF;
+}
+
+function connect_database() {
+	try {
+        $connection = new PDO('mysql:host=localhost:8889;dbname=magivax', 'magivax_user', 'anti-anti-vax');
+	    $connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+	    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	    return $connection;
+    } catch (Exception $e) {
+        throw new Exception('Error connecting to database: '.$e->getMessage());
+    }
 }
