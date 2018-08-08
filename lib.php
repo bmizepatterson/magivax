@@ -32,7 +32,7 @@ function user_nav($echo = true) {
 	<div class="user-nav">
 		<a class="user-nav_home user-nav_item" href="index.php">Magivax</a>
 		<a class="user-nav_item" href="enterpatientinfo.php">Start</a>
-		<a class="user-nav_item" href="#">Admin</a>
+		<a class="user-nav_item" href="admin.php">Admin</a>
 	</div>
 EOF;
 	if ($echo) {
