@@ -1,5 +1,4 @@
 <?php
-require_once(dirname(__FILE__) . '/lib.php');
 open_body('Enter Patient Info | Magivax');
 user_nav();
 ?>

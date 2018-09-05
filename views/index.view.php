@@ -1,5 +1,4 @@
 <?php
-require_once(dirname(__FILE__) . '/lib.php');
 open_body('Magivax', array('brown'));
 ?>
 <div class="w3-center w3-white w3-display-middle w3-animate-opacity" style="padding:48px">

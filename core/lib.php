@@ -79,14 +79,3 @@ function color_palette() {
 	</div>
 EOF;
 }
-
-function connect_database() {
-	try {
-        $connection = new PDO('mysql:host=localhost:8889;dbname=magivax', 'magivax_user', 'anti-anti-vax');
-	    $connection->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
-	    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	    return $connection;
-    } catch (Exception $e) {
-        throw new Exception('Error connecting to database: '.$e->getMessage());
-    }
-}
