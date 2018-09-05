@@ -30,10 +30,9 @@ function open_body($title, $classes = array(), $echo = true) {
 function user_nav($echo = true) {
 	$html = <<<EOF
 	<div class="user-nav">
-		<a class="user-nav_home user-nav_item" href="index.php">Magivax</a>
-		<a class="user-nav_item" href="enterpatientinfo.php">Start</a>
-		<a class="user-nav_item" href="admin.php">Admin</a>
-		<a class="user-nav_item" href="/phpmyadmin/" target="_blank">phpMyAdmin</a>
+		<a class="user-nav_home user-nav_item" href="/">Magivax</a>
+		<a class="user-nav_item" href="/enterpatientinfo">Start</a>
+		<a class="user-nav_item" href="/admin">Admin</a>
 	</div>
 EOF;
 	if ($echo) {
@@ -57,7 +56,7 @@ EOF;
 
 function close_body($color_palette = true, $echo = true) {
 	$html = $color_palette ? color_palette() : '';
-	$html .= '<script src="magivax.js"></script>';
+	$html .= '<script src="/assets/magivax.js"></script>';
 	$html .= "\n</body>\n</html>";
 	if ($echo) {
 		echo $html;
