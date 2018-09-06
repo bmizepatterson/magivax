@@ -5,7 +5,15 @@
 
 // TO DO: Prevent command line access
 
-function open_body($title, $classes = array(), $echo = true) {
+/**
+ * Each view should echo this function to start HTML output
+ * @param string $title of the page for the <title> tag
+ * @param array $classes an array of strings representing classes that should
+ * 		  be applied to the <body> tag
+ * @param bool $echo echo | return output
+ * @return string | void
+ */
+function open_body($title, $classes = array(), $echo = false) {
 	$class_str = '';
 	if ($classes) {
 		$class_str .= ' class="';
@@ -27,7 +35,12 @@ function open_body($title, $classes = array(), $echo = true) {
 	}
 }
 
-function user_nav($echo = true) {
+/**
+ * Output HTML to create a nav bar at the top of the page
+ * @param bool $echo echo | return output
+ * @return string | void
+ */
+function user_nav($echo = false) {
 	$html = <<<EOF
 	<div class="user-nav">
 		<a class="user-nav_home user-nav_item" href="/">Magivax</a>
