@@ -1,8 +1,3 @@
-<?php
-echo open_body('Admin | Magivax');
-echo user_nav();
-?>
-
 <div class="w3-content w3-section">
     <div class="w3-card">
         <div class="w3-container light-blue">
@@ -26,11 +21,11 @@ echo user_nav();
 	<h1>Manage Vaccine Data</h1>
 	<div class="w3-container">
 		<table class="w3-table-all">
-			<tr><th>id</th><th>Long name</th><th>Short name</th></tr>
+			<tr><th>&nbsp;</th><th>Long name</th><th>Short name</th></tr>
                 <?php foreach ($vaccines as $vaccine) {
-                    echo "<tr><td>{$vaccine->id}</td><td>{$vaccine->longname}</td><td>{$vaccine->shortname}</td></tr>";
+                    $deleteLink = "<a href=\"admin?delete=1&vaccine={$vaccine->id}\">Delete</a>";
+                    echo "<tr><td>{$deleteLink}</td><td>{$vaccine->longname}</td><td>{$vaccine->shortname}</td></tr>";
                 } ?>
 		</table>
 	</div>
 </div>
-<?= close_body(); ?>

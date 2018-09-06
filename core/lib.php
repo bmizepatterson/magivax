@@ -67,7 +67,13 @@ function standard_head() {
 EOF;
 }
 
-function close_body($color_palette = true, $echo = true) {
+/**
+ * Output HTML to close the body
+ * @param bool $color_palette whether to include the color palette at the bottom of the page
+ * @param bool $echo echo | return output
+ * @return string | void
+ */
+function close_body($color_palette = true, $echo = false) {
 	$html = $color_palette ? color_palette() : '';
 	$html .= '<script src="/assets/magivax.js"></script>';
 	$html .= "\n</body>\n</html>";

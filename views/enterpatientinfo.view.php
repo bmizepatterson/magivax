@@ -1,7 +1,3 @@
-<?php
-echo open_body('Enter Patient Info | Magivax');
-echo user_nav();
-?>
 <div class="w3-content w3-white">
 	<div class="w3-container">
 		<h1>Enter Patient Information</h1>
@@ -41,5 +37,3 @@ echo user_nav();
 		</div>
 	</div>
 </div>
-
-<?= close_body(); ?>
