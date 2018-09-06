@@ -1,5 +1,9 @@
 <?php
 
+define('ALLOW_MISSING', 0);
+define('MUST_EXIST', 1);
+define('ALLOW_MULTIPLES', 2);
+
 class Query
 {
     const DB_ACTION_CREATE = 1;
@@ -64,6 +68,108 @@ class Query
     }
 
     /**
+     * Queries the DB and returns a single record object
+     * 
+     * @param string $query The SQL query with param placeholders
+     * @param array $params An array of parameters
+     * @param int $strictness What to do if no result or more than 1 result 
+     *          Use ALLOW_MISSING, MUST_EXIST, ALLOW MULTIPLES
+     * @return false | single record object
+     */
+    public function getRecord($query, $params, $strictness = ALLOW_MISSING) 
+    {
+        if (strpos($query, 'SELECT') !== 0) {
+            throw new Exception('Use Query::getRecord ONLY to run SELECT statements.');
+        }
+        
+        $this->startQuery(self::DB_ACTION_READ);
+        $stmt = $this->prepareExecute($query, $params, self::DB_ACTION_READ);
+        
+        $fetch = $stmt->fetchAll();
+        if (!is_null($fetch) and $fetch === false) {
+            // fetch failed
+            $this->reads--;
+            throw new Exception('Failed to fetch results for query: ' . "\n" . $stmt->queryString);
+        } else if (!count($fetch) and $strictness == MUST_EXIST) {
+            // No results found
+            throw new Exception('No record found for query: ' . "\n" . $stmt->queryString);
+        } else if (count($fetch) > 1 and $strictness != ALLOW_MULTIPLES) {
+            // More than one result found
+            throw new Exception('More than one record found for query: ' . "\n" . $stmt->queryString);
+        } else {
+            $this->endQuery();
+            if (!count($fetch)) {
+                return false;
+            } else {
+                return reset($fetch);
+            }
+        }
+    }
+    
+    /**
+     * Queries the DB and returns a single field from a record object
+     *
+     * @param string $table
+     * @param string $field
+     * @param array $params An array of parameters
+     * @param int $strictness What to do if no result or more than 1 result 
+     *          Use ALLOW_MISSING, MUST_EXIST, ALLOW MULTIPLES
+     * @return string
+     */
+    public function getField($table, $field, $params = array(), $strictness = ALLOW_MISSING) {
+        if (!is_array($params)) {
+            throw new Exception('$params must be an array.');
+        }
+        if (!in_array($table, $this->get_tables(true))) {
+            throw new Exception("Table $table not found in database.");
+        }        
+        $select = "SELECT $field FROM $table";
+        $queryparams = array();        
+        if (!empty($params)) {
+            $where = " WHERE ";
+            $i = 1; // There's at least one parameter
+            foreach ($params as $param => $value) {
+                $where .= "$param = ?";
+                $queryparams[] = $value;
+                if ($i < count($params)) {
+                    $where .= " AND ";
+                }
+                $i++;
+            }
+        }        
+        $query = $select.$where;
+        $record = $this->getRecord($query, $queryparams, $strictness);
+        return $record->$field;
+    }
+    
+    /**
+     * Queries the DB and returns an array of record object
+     * 
+     * @param string $query The SQL query with param placeholders
+     * @param array $params An array of parameters
+     * @return array of record objects
+     */
+    public function getRecords($query, $params) 
+    {
+        if (strpos($query, 'SELECT') !== 0) {
+            throw new coding_exception('Use Query::getRecords ONLY to run SELECT statements.');
+        }
+        
+        $this->startQuery(self::DB_ACTION_READ);
+        $stmt = $this->prepareExecute($query, $params, self::DB_ACTION_READ);
+        
+        $fetch = $stmt->fetchAll();
+        if ($fetch === false) {
+            // fetch failed
+            $this->reads--;
+            throw new Exception('Failed to fetch results for query: ' . "\n" . $query);
+        } else {
+            $this->endQuery();
+            return $fetch;
+        }
+    }
+
+    /**
      * Runs a sql INSERT statement
      * 
      * @param string $query The SQL query with param placeholders
@@ -73,7 +179,7 @@ class Query
     public function insertRecord($query, $params)
     {
         if (strpos($query, 'INSERT INTO') !== 0) {
-            throw new Exception('Use Query::insert_record ONLY to run INSERT statements.');
+            throw new Exception('Use Query::insertRecord ONLY to run INSERT statements.');
         }
         
         $this->startQuery(self::DB_ACTION_CREATE);
@@ -85,6 +191,49 @@ class Query
             $this->writes--;
             return false;
         }
+    }
+
+    /**
+     * Runs a sql UPDATE statement
+     * 
+     * @param string $query The SQL query with param placeholders
+     * @param array $params An array of parameters
+     * @return true for success
+     */
+    public function updateRecord($query, $params) 
+    {
+        if (strpos($query, 'UPDATE') !== 0) {
+            throw new Exception('Use Query::updateRecord ONLY to run UPDATE statements.');
+        }
+        
+        $this->startQuery(self::DB_ACTION_UPDATE);
+        if ($this->prepareExecute($query, $params, self::DB_ACTION_UPDATE)) {
+            $this->endQuery();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Runs a sql DELETE statement
+     * 
+     * @param string $query The SQL query with param placeholders
+     * @param array $params An array of parameters
+     * @return true|false
+     */
+    public function deleteRecord($query, $params = array()) 
+    {
+        if (strpos($query, 'DELETE') !== 0) {
+            throw new coding_exception('Use Query::deleteRecord ONLY to run DELETE statements.');
+        }
+        
+        $this->startQuery(self::DB_ACTION_DELETE);
+        $deleteSuccess = (bool) $this->prepareExecute($query, $params, self::DB_ACTION_DELETE);
+        $this->endQuery();
+        if (!$deleteSuccess) {
+            $this->writes--;
+        }
+        return $deleteSuccess;
     }
 
     /**
