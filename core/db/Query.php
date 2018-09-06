@@ -8,4 +8,11 @@ class Query
     {
         $this->pdo = $pdo;
     }
+
+    public function selectAll($table)
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM {$table}");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }
