@@ -21,6 +21,8 @@ class Router
         if (array_key_exists($uri, $this->routes)) {
             return $this->routes[$uri];
         }
-        throw new Exception('No route defined for URI ' . $uri);
+        http_response_code(404);
+        include '404.php';
+        die();
     }
 }
