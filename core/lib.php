@@ -44,7 +44,7 @@ function user_nav($echo = false) {
 	$html = <<<EOF
 	<div class="user-nav">
 		<a class="user-nav_home user-nav_item" href="/">Magivax</a>
-		<a class="user-nav_item" href="/enterpatientinfo">Start</a>
+		<a class="user-nav_item" href="/start">Start</a>
 		<a class="user-nav_item" href="/admin">Admin</a>
 		<a class="user-nav_item" href="/about">About</a>
 	</div>
